@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 import styled from 'styled-components';
 
-import {authenticate} from '../store/actions/auth';
-// src/store/actions/auth
+import {authenticate} from 'src/store/actions/auth';
+
+interface HomeProps extends RouteComponentProps<any> {
+}
+
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
@@ -28,7 +31,7 @@ const LogoStyled = styled.img`
   margin-bottom: 20px;
 `;
 
-function LoginPage({history}) {
+const LoginPage: React.FC<HomeProps> = (props) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState('');
   const [sublogin, setSubLogin] = useState('');
@@ -39,7 +42,7 @@ function LoginPage({history}) {
 
   useEffect(() => {
     if (isLoggedIn) {
-      history.push('/console');
+      props.history.push('/console');
     }
   }, [isLoggedIn]);
 

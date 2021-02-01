@@ -1,1 +1,1 @@
-export * from './auth';
+export * from 'src/store/actions/auth';

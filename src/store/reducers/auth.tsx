@@ -1,6 +1,6 @@
 import {handleActions} from 'redux-actions';
 
-import {ActionTypes} from '../constants/index';
+import {ActionTypes} from 'src/store/constants';
 
 export const initialState = {
   loading: false,
