@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
-import {RouteComponentProps, withRouter} from 'react-router-dom';
-// import {Form, Field} from 'react-final-form';
+import React, { useEffect, useState } from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Form, Field } from 'react-final-form';
 import styled from 'styled-components';
+import { authenticate } from 'src/store/actions/auth';
 
-import {authenticate} from 'src/store/actions/auth';
 
 interface HomeProps extends RouteComponentProps<any> {
 }
@@ -26,12 +26,13 @@ const LoginPage: React.FC<HomeProps> = (props) => {
   const [login, setLogin] = useState('');
   const [sublogin, setSubLogin] = useState('');
   const [password, setPassword] = useState('');
-  const loading = useSelector((state:RootStateOrAny) => state.auth.loading);
-  const isLoggedIn = useSelector((state:RootStateOrAny) => !!state.auth.sessionKey?.length)
-  console.log('isLoggedIn', isLoggedIn);
+  const loading = useSelector((state: RootStateOrAny) => state.auth.loading);
+  const isLoggedIn = useSelector((state: RootStateOrAny) => !!state.auth.sessionKey?.length)
+
   useEffect(() => {
     if (isLoggedIn) {
-      props.history.push('/console');
+      console.log(isLoggedIn)
+      props.history.push('/mainapp');
     }
   }, [isLoggedIn]);
 
@@ -49,24 +50,87 @@ const LoginPage: React.FC<HomeProps> = (props) => {
     event.preventDefault();
     doLogin();
   }
-  // action="/"
   return (
     <Wrapper>
       <LogoStyled src="/icons/logo.svg" alt="" />
-      <div onSubmit={onSubmit} >
-        <input name="login"  value={login} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setLogin(e.target.value)} placeholder="Логин" />
-        <input name="sublogin"  value={sublogin} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSubLogin(e.target.value)} placeholder="Сублогин" />
-        <input name="password"  value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} placeholder="Пароль" />
-        <button type="submit"  onClick={onSubmit}>
-          Отправить
-        </button>
-      </div>
+      <Form
+        action='/'
+        onSubmit={onSubmit}
+        validate={(values: any) => {
+          const errors: any = {}
+          if (!values.login) {
+            errors.login = 'Required'
+          }
+          if (!values.password) {
+            errors.password = 'Required'
+          }
+          if (!values.sublogin) {
+            errors.sublogin = 'Required'
+          }
+          return errors
+        }}
+
+        render={({ handleSubmit, form, submitting, pristine }) => (
+          <form onSubmit={handleSubmit}>
+            <Field name="login">
+              {({ input, meta }) => (
+                <div>
+                  <label>Login</label>
+                  <input
+                    {...input}
+                    onChange={(e) => {
+                      input.onChange(e)
+                      setLogin(e.target.value)
+                    }}
+                    type="text"
+                    placeholder="Login" />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field name="sublogin">
+              {({ input, meta }) => (
+                <div>
+                  <label>Sublogin</label>
+                  <input
+                    {...input}
+                    onChange={(e) => {
+                      input.onChange(e)
+                      setSubLogin(e.target.value)
+                    }}
+                    type="text"
+                    placeholder="Sublogin" />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field name="password">
+              {({ input, meta }) => (
+                <div>
+                  <label>Password</label>
+                  <input
+                    {...input}
+                    onChange={(e) => {
+                      input.onChange(e)
+                      setPassword(e.target.value)
+                    }}
+                    type="text"
+                    placeholder="Password" />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <div className="buttons">
+              <button type="submit" disabled={submitting} onClick={onSubmit}>
+                Войти
+              </button>
+            </div>
+          </form>
+        )}
+      />
+
     </Wrapper>
   );
 }
-
-// component="input"
-// component="input"
-// component="input"
 
 export default withRouter(LoginPage);
