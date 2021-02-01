@@ -1,0 +1,74 @@
+.login {
+
+}
+.login__icon {
+    display: flex;
+    justify-content: center;
+}
+
+.login__form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffff;
+    padding: 30px;
+    width: 520px;
+    height: 425px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.container__login {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column
+}
+
+.container__sublogin {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column
+}
+
+.container__password {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column
+}
+
+input {
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+label{
+    font-family: SF Pro Text;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+input.error {
+    border: 1px solid red;
+    color: red;
+}
+
+.button{
+    margin-top: 1rem;
+}
+
+.buttons__log-in {
+    font-family: SF Pro Text;
+    background: linear-gradient(180deg, #45A6FF 0%, #0055FB 100%), #C4C4C4;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+}

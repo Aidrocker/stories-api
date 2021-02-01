@@ -5,13 +5,14 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import createStore from 'src/store';
 import LoginPage from './containers/LoginPage';
 import { MainApp } from './containers/MainApp';
+
 const {store} = createStore();
 
 function App() {
   return (
     <Router>
       <Provider store={store}>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
+        {/* <PersistGate loading={null} persistor={persistore}> */}
           <Switch>
             <Route path="/" exact>
               <LoginPage />

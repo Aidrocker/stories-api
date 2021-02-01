@@ -1,39 +1,50 @@
 import { combineReducers } from 'redux';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { persistReducer, persistStore } from 'redux-persist';
+import { persistReducer, persistStore, FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import rootReducer from 'src/store/reducers/index';
 import rootSaga from 'src/store/sagas/index';
 
 const sagaMiddleware = createSagaMiddleware();
+
 const persistConfig = {
   key: 'root',
+  version: 1,
   storage,
 };
+const reducers = combineReducers({
+  auth: rootReducer.auth       
+ });
 
-const reducer = combineReducers({
-  auth: persistReducer(persistConfig, rootReducer.auth)
-})
-const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware];
+const persistedReducer = persistReducer(persistConfig, reducers);
+const middleware = [...getDefaultMiddleware({ thunk: false, 
+  serializableCheck: {
+    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+  }}), sagaMiddleware] as const;
 
 
 export default () => {
   const store = configureStore({
-    reducer,
+    reducer: persistedReducer,
     middleware,
     devTools: process.env.NODE_ENV !== 'production',
   });
+  console.log(typeof store)
+
+  // const persistor = persistStore(store);
   // store.runSagaTask = () => {
-     sagaMiddleware.run(rootSaga);
+  //   store.sagaTask = 
   // }
-// store.sagaTask =
-  // let persistor = persistStore(store.auth);
-
-
+  sagaMiddleware.run(rootSaga);
   // store.runSagaTask();
   return {
-    store,
-    // persistor,
+    store
   };
 }
+export type RootState = ReturnType<typeof reducers>
