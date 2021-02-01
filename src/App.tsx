@@ -1,10 +1,10 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-// import {PersistGate} from 'redux-persist/integration/react';
+import {PersistGate} from 'redux-persist/integration/react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import createStore from 'src/store';
 import LoginPage from './containers/LoginPage';
-const {store, persistor} = createStore();
+const {store} = createStore();
 
 function App() {
   return (

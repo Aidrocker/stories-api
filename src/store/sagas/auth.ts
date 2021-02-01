@@ -1,4 +1,4 @@
-import {all, put, call, takeLatest} from 'redux-saga/effects';
+import {all, put, call, takeLatest} from '@redux-saga/core/effects';
 import api from 'src/helpers/sendsay';
 
 import {ActionTypes} from 'src/store/constants';
@@ -16,7 +16,7 @@ export function* authenticateCheckSaga() {
   }
 }
 
-export function* authenticateSaga({payload}) {
+export function* authenticateSaga({payload}: ReturnType<typeof authenticateSuccess>){
   yield api.sendsay
     .login({
       login: payload.login,
