@@ -4,7 +4,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import createStore from 'src/store';
 import LoginPage from './containers/LoginPage';
-import { MainApp } from './containers/MainApp';
+import { MainApp } from './containers/MainAppPage';
 
 const {store} = createStore();
 

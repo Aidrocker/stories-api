@@ -29,6 +29,7 @@ export function* authenticateSaga({payload}: AnyAction){
     .catch((err: any) => {
       document.cookie = '';
       console.log('err', err);
+      
     });
 
   yield put(

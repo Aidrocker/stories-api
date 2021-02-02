@@ -35,14 +35,9 @@ export default () => {
     middleware,
     devTools: process.env.NODE_ENV !== 'production',
   });
-  console.log(typeof store)
-
-  // const persistor = persistStore(store);
-  // store.runSagaTask = () => {
-  //   store.sagaTask = 
-  // }
+  
   sagaMiddleware.run(rootSaga);
-  // store.runSagaTask();
+  
   return {
     store
   };

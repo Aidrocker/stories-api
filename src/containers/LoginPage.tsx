@@ -23,6 +23,7 @@ const LoginPage: React.FC<HomeProps> = ({ history }) => {
   const [password, setPassword] = useState('');
   const loading = useSelector((state: RootStateOrAny) => state.auth.loading);
   const isLoggedIn = useSelector((state: RootStateOrAny) => !!state.auth.sessionKey?.length);
+  console.log(loading)
 
   useEffect(() => {
     if (isLoggedIn) {
