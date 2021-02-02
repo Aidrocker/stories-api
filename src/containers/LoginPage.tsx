@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { authenticate } from 'src/store/actions/auth';
 import Login from 'src/components/login/Login';
 
-
 interface HomeProps extends RouteComponentProps<any> {
 }
 
@@ -17,18 +16,17 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const LoginPage: React.FC<HomeProps> = (props) => {
+const LoginPage: React.FC<HomeProps> = ({ history }) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState('');
   const [sublogin, setSubLogin] = useState('');
   const [password, setPassword] = useState('');
   const loading = useSelector((state: RootStateOrAny) => state.auth.loading);
   const isLoggedIn = useSelector((state: RootStateOrAny) => !!state.auth.sessionKey?.length);
-  const date = useSelector((state:RootStateOrAny) => state)
-  
+
   useEffect(() => {
     if (isLoggedIn) {
-      props.history.push('/mainapp');
+      history.push('/mainapp');
     }
   }, [isLoggedIn]);
 
@@ -42,13 +40,20 @@ const LoginPage: React.FC<HomeProps> = (props) => {
     );
   };
 
-  function onSubmit(event:React.ChangeEvent<HTMLInputElement>) {
+  function onSubmit(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
     doLogin();
   }
   return (
     <Wrapper>
-     <Login setLogin={setLogin} setPassword={setPassword} setSubLogin={setSubLogin} onSubmit={onSubmit}/>
+      <Login 
+        setLogin={setLogin} 
+        setPassword={setPassword} 
+        setSubLogin={setSubLogin} 
+        onSubmit={onSubmit} 
+        loading={loading} 
+        isLoggedIn={isLoggedIn}
+      />
     </Wrapper>
   );
 }

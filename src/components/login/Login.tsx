@@ -2,19 +2,22 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import styled from 'styled-components';
 import 'src/styles/Login.css';
+import ErrorBoundary from '../error-boundary/ErrorBoundary';
 
 interface LoginProps {
     onSubmit(e: any): void
     setLogin(login: string): void
     setSubLogin(login: string): void
     setPassword(login: string): void
+    loading: boolean
+    isLoggedIn: boolean
 }
 
 const LogoStyled = styled.img`
-  margin-bottom: 20px;
+ 
 `;
 
-const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassword }) => {
+const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassword, loading, isLoggedIn }) => {
     return (
         <div className='login'>
             <div className='login__icon'>
@@ -24,6 +27,7 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                 <div className='form-container__title'>
                     <h3>API-консолька</h3>
                 </div>
+                {!!isLoggedIn && <ErrorBoundary text='Вход не вышел' src={'/icons/meh.svg'}/>}
                 <Form
                     action='/'
                     onSubmit={onSubmit}
@@ -41,12 +45,11 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                         return errors
                     }}
 
-                    render={({ handleSubmit, submitting, errors }) => (
-
+                    render={({ handleSubmit, submitting, pristine }) => (
                         <form onSubmit={handleSubmit} className='login__form'>
                             <Field name="login">
                                 {({ input, meta }) => (
-                                    <div className='container__login'>
+                                    <div className={`container__login ${meta.error && meta.touched && 'container__error'}`}>
                                         <label>Логин</label>
                                         <input
                                             className='login-input'
@@ -57,13 +60,12 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                                             }}
                                             type="text"
                                             placeholder="Login" />
-                                        {meta.error && meta.touched && <span>{meta.error}</span>}
                                     </div>
                                 )}
                             </Field>
                             <Field name="sublogin">
                                 {({ input, meta }) => (
-                                    <div className='container__sublogin'>
+                                    <div className={`container__login ${meta.error && meta.touched && 'container__error'}`}>
                                         <label>Сублогин</label>
                                         <input
                                             className='sublogin__input'
@@ -74,13 +76,12 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                                             }}
                                             type="text"
                                             placeholder="Sublogin" />
-                                        {meta.error && meta.touched && <span>{meta.error}</span>}
                                     </div>
                                 )}
                             </Field>
                             <Field name="password">
                                 {({ input, meta }) => (
-                                    <div className='container__password'>
+                                    <div className={`container__login ${meta.error && meta.touched && 'container__error'}`}>
                                         <label>Пароль</label>
                                         <input
                                             className='password__input'
@@ -91,20 +92,25 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                                             }}
                                             type="password"
                                             placeholder="Password" />
-                                        {meta.error && meta.touched && <span>{meta.error}</span>}
                                     </div>
                                 )}
                             </Field>
                             <div className="button">
-                                <button type="submit" disabled={submitting} onClick={onSubmit} className='buttons__log-in'>
-                                    Войти
-                                </button>
+                               
+                                {loading ? 
+                                    <button className='button__loading'>
+                                        <LogoStyled src="/icons/loader.svg" alt="" />
+                                    </button>
+                                   : 
+                                   <button type="submit" disabled={submitting || pristine} onClick={onSubmit} className='button__log-in'>
+                                        Войти
+                                   </button>
+                                }
                             </div>
                         </form>
                     )}
                 />
             </div>
-
         </div>
 
     )
