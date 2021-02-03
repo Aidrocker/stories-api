@@ -2,7 +2,7 @@ import React from 'react';
 import 'src/styles/HistoryList.css';
 import HistoryItem from '../history-item/HistoryItem';
 import Tabs from '@material-ui/core/Tabs';
-import { Box, Button } from '@material-ui/core';
+import {  Button } from '@material-ui/core';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 

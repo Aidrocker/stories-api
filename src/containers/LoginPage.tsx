@@ -5,9 +5,6 @@ import styled from 'styled-components';
 import { authenticate } from 'src/store/actions/auth';
 import Login from 'src/components/login/Login';
 
-interface HomeProps extends RouteComponentProps<any> {
-}
-
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
@@ -16,14 +13,15 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const LoginPage: React.FC<HomeProps> = ({ history }) => {
+const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState('');
   const [sublogin, setSubLogin] = useState('');
   const [password, setPassword] = useState('');
   const loading = useSelector((state: RootStateOrAny) => state.auth.loading);
   const isLoggedIn = useSelector((state: RootStateOrAny) => !!state.auth.sessionKey?.length);
-  console.log(loading)
+  const date = useSelector((state:RootStateOrAny) => state);
+  console.log(date)
 
   useEffect(() => {
     if (isLoggedIn) {

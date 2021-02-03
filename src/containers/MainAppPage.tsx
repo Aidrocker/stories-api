@@ -1,10 +1,10 @@
 import React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import Header from 'src/components/header/Header';
-import HistoryItem from 'src/components/history/history-item/HistoryItem';
 import HistoryList from 'src/components/history/history-list/HistoryList';
 
 
-export const MainApp: React.FC = () => {
+const MainAppPage: React.FC<RouteComponentProps>  = ({history}) => {
 
     return (
         <div className='main-app'>
@@ -44,3 +44,5 @@ export const MainApp: React.FC = () => {
         </div>
     )
 }
+
+export default withRouter(MainAppPage);

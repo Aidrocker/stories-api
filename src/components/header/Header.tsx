@@ -1,9 +1,19 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { logout } from 'src/store/actions';
 import 'src/styles/Header.css';
 
+const Header: React.FC<RouteComponentProps> = ({history}) => {
+    const dispatch = useDispatch();
 
-const Header: React.FC = () => {
+    const doLogOut = () => {
+        dispatch(
+          logout()
+        );
+        history.push('/')
+      };
     return (
         <div className='header'>
             <div className='header__icont-and-title'>
@@ -15,11 +25,12 @@ const Header: React.FC = () => {
                 </div>
             </div>
             <div className='header__actions'>
-                <div className='header__user'>
+                <Button variant="outlined">
                     some@email.com :  sublogin
-                </div>
+                </Button>
+                
                 <div className='header__log-out'>
-                    <Button className='header__log-out-button'>
+                    <Button className='header__log-out-button' onClick={doLogOut}>
                             <img src="/icons/log-out.svg" alt="" />
                     </Button>
                 </div>
@@ -33,4 +44,4 @@ const Header: React.FC = () => {
     )
 }
 
-export default Header;
+export default withRouter(Header);
