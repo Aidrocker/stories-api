@@ -3,7 +3,6 @@
     flex-direction: row;
     align-items: center;
     padding: 5px 10px;
-    position: static;
     width: 120px;
     height: 30px;
     left: 0px;
@@ -15,16 +14,13 @@
     order: 0;
     flex-grow: 0;
     margin: 0px 10px;
-    position: relative;
 }
 
 .history-item__status {
-    position: static;
     width: 10px;
     height: 10px;
     left: 10px;
     top: 10px;
-    
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     flex: none;

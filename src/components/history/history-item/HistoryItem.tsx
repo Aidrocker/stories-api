@@ -3,9 +3,13 @@ import 'src/styles/HistoryItem.css';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+interface HistoryItemProps {
+    title: string
+}
 
 
-const HistoryItem: React.FC = () => {
+
+const HistoryItem: React.FC <HistoryItemProps>= ({title}) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -21,7 +25,7 @@ const HistoryItem: React.FC = () => {
         <div className='history-item'>
             <div className='history-item__status status-active'></div>
             <span className='history-item__title'>
-                track.get
+                {title}
             </span>
             <svg 
                 onClick={handleClick}
