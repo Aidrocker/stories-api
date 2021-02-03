@@ -22,9 +22,9 @@ const HistoryItem: React.FC <HistoryItemProps>= ({title}) => {
     };
 
     return (
-        <div className='history-item'>
+        <div className='history-item' >
             <div className='history-item__status status-active'></div>
-            <span className='history-item__title'>
+            <span className='history-item__title' onClick={handleClick}>
                 {title}
             </span>
             <svg 

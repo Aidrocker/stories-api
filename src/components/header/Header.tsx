@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
 import 'src/styles/Header.css';
 
@@ -18,17 +19,14 @@ const Header: React.FC = () => {
                     some@email.com :  sublogin
                 </div>
                 <div className='header__log-out'>
-                    <div className='log-out__title'>
-                        Выйти
-                    </div>
-                    <button className='header__log-out-button'>
+                    <Button className='header__log-out-button'>
                             <img src="/icons/log-out.svg" alt="" />
-                    </button>
+                    </Button>
                 </div>
                 <div className='header__scale'>
-                    <button className='header__button-scale'>
+                    <Button className='header__button-scale'>
                         <img src='/icons/vector.svg' />
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

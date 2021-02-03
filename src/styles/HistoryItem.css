@@ -16,6 +16,10 @@
     margin: 0px 10px;
 }
 
+.history-item__title {
+    cursor: pointer;
+}
+
 .history-item__status {
     width: 10px;
     height: 10px;

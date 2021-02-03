@@ -41,7 +41,6 @@
 .header__log-out {
     display: flex;
     align-items: center;
-    margin-right: 3rem;
 }
 
 .log-out__title {
