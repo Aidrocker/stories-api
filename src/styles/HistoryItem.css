@@ -53,3 +53,12 @@
     user-select: none;
     cursor: pointer;
 }
+
+
+.delete.MuiListItem-button:hover {
+    background-color: #CF2C00;
+}
+
+.copy.MuiListItem-button:hover {
+    background-color: #0055FB;
+}

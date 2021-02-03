@@ -4,6 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { authenticate } from 'src/store/actions/auth';
 import Login from 'src/components/login/Login';
+import { string } from 'prop-types';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -20,8 +21,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
   const [password, setPassword] = useState('');
   const loading = useSelector((state: RootStateOrAny) => state.auth.loading);
   const isLoggedIn = useSelector((state: RootStateOrAny) => !!state.auth.sessionKey?.length);
-  const date = useSelector((state:RootStateOrAny) => state);
-  console.log(date)
+
 
   useEffect(() => {
     if (isLoggedIn) {

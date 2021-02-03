@@ -44,13 +44,13 @@ const HistoryItem: React.FC <HistoryItemProps>= ({title}) => {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem key='Выполнить' onClick={handleClose}>
+                <MenuItem key='Выполнить' onClick={handleClose} classes={{gutters: 'execute'}}>
                     Выполнить   
                 </MenuItem>
-                <MenuItem key='Скопировать' onClick={handleClose}>
+                <MenuItem key='Скопировать' onClick={handleClose} classes={{root: 'copy'}}>
                     Скопировать
                 </MenuItem>
-                <MenuItem key='Удалить' onClick={handleClose}>
+                <MenuItem key='Удалить' onClick={handleClose} classes={{root:'delete'}}>
                     Удалить
                 </MenuItem>
             </Menu>
