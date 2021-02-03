@@ -15,7 +15,6 @@ const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: 'root',
-  version: 1,
   storage,
 };
 const reducers = combineReducers({
@@ -35,7 +34,7 @@ export default () => {
     middleware,
     devTools: process.env.NODE_ENV !== 'production',
   });
-  
+  // let persist = persistStore(store);
   sagaMiddleware.run(rootSaga);
   
   return {

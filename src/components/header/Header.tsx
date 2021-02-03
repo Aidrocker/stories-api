@@ -21,11 +21,9 @@ const Header: React.FC = () => {
                     <div className='log-out__title'>
                         Выйти
                     </div>
-                    <div className='log-out__button'>
-                        <button className='header__log-out-button'>
+                    <button className='header__log-out-button'>
                             <img src="/icons/log-out.svg" alt="" />
-                        </button>
-                    </div>
+                    </button>
                 </div>
                 <div className='header__scale'>
                     <button className='header__button-scale'>

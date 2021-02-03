@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from 'src/components/header/Header';
+import HistoryItem from 'src/components/history/history-item/HistoryItem';
 
 
 export const MainApp: React.FC = () => {
 
     return (
-        <div>
+        <div className='main-app'>
             <Header/>
-            <div>
+            <HistoryItem/>
+            {/* <div>
                 <div>
                     <div>Title</div>
                     <div>Window </div>
@@ -36,7 +38,7 @@ export const MainApp: React.FC = () => {
                     <div>Align right</div>
                     <div>форматировать</div>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )

@@ -1,0 +1,55 @@
+.history-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 10px;
+    position: static;
+    width: 120px;
+    height: 30px;
+    left: 0px;
+    top: 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+    position: relative;
+}
+
+.history-item__status {
+    position: static;
+    width: 10px;
+    height: 10px;
+    left: 10px;
+    top: 10px;
+    
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 5px;
+    border-radius: 50%;
+}
+
+.status-active {
+    background: #30B800;
+}
+
+.status-disconect {
+    background: #CF2C00;;
+}
+
+.svg {
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    font-size: 1.5rem;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    flex-shrink: 0;
+    user-select: none;
+    cursor: pointer;
+}

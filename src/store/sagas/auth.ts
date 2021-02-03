@@ -3,6 +3,7 @@ import api from 'src/helpers/sendsay';
 import { AnyAction } from 'redux';
 import {ActionTypes} from 'src/store/constants';
 import {authenticateSuccess, authenticateFailure} from 'src/store/actions/auth';
+import { Reducer } from 'react';
 
 export function* authenticateCheckSaga() {
   try {
@@ -16,7 +17,7 @@ export function* authenticateCheckSaga() {
   }
 }
 
-export function* authenticateSaga({payload}: AnyAction){
+export function* authenticateSaga({payload} : AnyAction){
   yield api.sendsay
     .login({
       login: payload.login,
