@@ -13,7 +13,7 @@ const Header: React.FC<RouteComponentProps> = ({history}) => {
           logout()
         );
         history.push('/')
-      };
+    };
     return (
         <div className='header'>
             <div className='header__icont-and-title'>

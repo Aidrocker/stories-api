@@ -21,7 +21,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
   const [password, setPassword] = useState('');
   const loading = useSelector((state: RootStateOrAny) => state.auth.loading);
   const isLoggedIn = useSelector((state: RootStateOrAny) => !!state.auth.sessionKey?.length);
-
+  const isError = useSelector((state:RootStateOrAny) => state.auth.isError);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -51,7 +51,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
         setSubLogin={setSubLogin} 
         onSubmit={onSubmit} 
         loading={loading} 
-        isLoggedIn={isLoggedIn}
+        isError={isError}
       />
     </Wrapper>
   );

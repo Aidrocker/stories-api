@@ -1,9 +1,9 @@
-import {all, put, call, takeLatest} from '@redux-saga/core/effects';
+import { all, put, call, takeLatest, take } from '@redux-saga/core/effects';
 import api from 'src/helpers/sendsay';
 import { AnyAction } from 'redux';
-import {ActionTypes} from 'src/store/constants';
-import {authenticateSuccess, authenticateFailure} from 'src/store/actions/auth';
-import { Reducer } from 'react';
+import { ActionTypes } from 'src/store/constants';
+import { authenticateSuccess, authenticateFailure } from 'src/store/actions/auth';
+import { RecentActorsOutlined } from '@material-ui/icons';
 
 export function* authenticateCheckSaga() {
   try {
@@ -17,29 +17,27 @@ export function* authenticateCheckSaga() {
   }
 }
 
-export function* authenticateSaga({payload} : AnyAction){
-  yield api.sendsay
+export function* authenticateSaga({ payload }: AnyAction) {
+  
+  try{
+    const data = yield api.sendsay
     .login({
       login: payload.login,
       sublogin: payload.sublogin,
       password: payload.password,
-    })
-    .then(() => {
-      document.cookie = `sendsay_session=${api.sendsay.session}`;
-    })
-    .catch((err: any) => {
-      document.cookie = '';
-      console.log('err', err);
-      
-    });
+    }).then(() => api.sendsay.session);
 
-  yield put(
-    authenticateSuccess({
-      sessionKey: api.sendsay.session,
-      login: payload.login,
-      sublogin: payload.sublogin,
-    })
-  );
+    yield put(authenticateSuccess({
+          sessionKey: data,
+          login: payload.login,
+          sublogin: payload.sublogin,
+        }))
+    document.cookie = `sendsay_session=${api.sendsay.session}`;
+  }catch(err){
+    yield put(authenticateFailure())
+    document.cookie = '';
+    console.log('err', err);
+  }
 }
 
 export function* logoutSaga() {

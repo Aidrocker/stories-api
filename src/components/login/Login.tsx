@@ -10,14 +10,15 @@ interface LoginProps {
     setSubLogin(login: string): void
     setPassword(login: string): void
     loading: boolean
-    isLoggedIn: boolean
+    isError: boolean
 }
 
 const LogoStyled = styled.img`
  
 `;
 
-const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassword, loading, isLoggedIn }) => {
+const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassword, loading, isError }) => {
+    
     return (
         <div className='login'>
             <div className='login__icon'>
@@ -27,29 +28,15 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                 <div className='form-container__title'>
                     <h3>API-консолька</h3>
                 </div>
-                {!!isLoggedIn && <ErrorBoundary text='Вход не вышел' src={'/icons/meh.svg'}/>}
+                {isError && <ErrorBoundary text='Вход не вышел' src={'/icons/meh.svg'}/>}
                 <Form
                     action='/'
                     onSubmit={onSubmit}
-                    validate={(values: any) => {
-                        const errors: any = {}
-                        if (!values.login) {
-                            errors.login = 'Required'
-                        }
-                        if (!values.password) {
-                            errors.password = 'Required'
-                        }
-                        if (!values.sublogin) {
-                            errors.sublogin = 'Required'
-                        }
-                        return errors
-                    }}
-
                     render={({ handleSubmit, submitting, pristine }) => (
                         <form onSubmit={handleSubmit} className='login__form'>
                             <Field name="login">
-                                {({ input, meta }) => (
-                                    <div className={`container__login ${meta.error && meta.touched && 'container__error'}`}>
+                                {({ input }) => (
+                                    <div className={`container__login ${isError && 'container__error'}`}>
                                         <label>Логин</label>
                                         <input
                                             className='login-input'
@@ -64,8 +51,8 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                                 )}
                             </Field>
                             <Field name="sublogin">
-                                {({ input, meta }) => (
-                                    <div className={`container__login ${meta.error && meta.touched && 'container__error'}`}>
+                                {({ input }) => (
+                                    <div className='container__login'>
                                         <label>Сублогин</label>
                                         <input
                                             className='sublogin__input'
@@ -80,8 +67,8 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                                 )}
                             </Field>
                             <Field name="password">
-                                {({ input, meta }) => (
-                                    <div className={`container__login ${meta.error && meta.touched && 'container__error'}`}>
+                                {({ input }) => (
+                                    <div className={`container__login ${isError && 'container__error'}`}>
                                         <label>Пароль</label>
                                         <input
                                             className='password__input'
