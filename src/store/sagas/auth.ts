@@ -2,8 +2,8 @@ import { all, put, call, takeLatest, take } from '@redux-saga/core/effects';
 import api from 'src/helpers/sendsay';
 import { AnyAction } from 'redux';
 import { ActionTypes } from 'src/store/constants';
-import { authenticateSuccess, authenticateFailure } from 'src/store/actions/auth';
-import { RecentActorsOutlined } from '@material-ui/icons';
+import { authenticateSuccess, authenticateFailure, logout } from 'src/store/actions/auth';
+
 
 export function* authenticateCheckSaga() {
   try {
@@ -41,7 +41,7 @@ export function* authenticateSaga({ payload }: AnyAction) {
 }
 
 export function* logoutSaga() {
-  yield put(authenticateFailure());
+  yield call(logoutSaga);
   document.cookie = '';
 }
 
