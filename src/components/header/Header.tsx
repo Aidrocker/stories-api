@@ -5,15 +5,13 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { logout } from 'src/store/actions';
 import 'src/styles/Header.css';
 
-const Header: React.FC<RouteComponentProps> = ({history}) => {
-    const dispatch = useDispatch();
+interface HeaderProps{
+    login: string
+    onSubmit(e: any): void
+}
 
-    const doLogOut = () => {
-        dispatch(
-          logout()
-        );
-        history.push('/')
-    };
+type Props = HeaderProps & RouteComponentProps;
+const Header: React.FC<Props> = ({history, login, onSubmit}) => {
     return (
         <div className='header'>
             <div className='header__icont-and-title'>
@@ -26,11 +24,11 @@ const Header: React.FC<RouteComponentProps> = ({history}) => {
             </div>
             <div className='header__actions'>
                 <Button variant="outlined">
-                    some@email.com :  sublogin
+                    {login} :  sublogin
                 </Button>
                 
                 <div className='header__log-out'>
-                    <Button className='header__log-out-button' onClick={doLogOut}>
+                    <Button className='header__log-out-button' onClick={onSubmit}>
                             <img src="/icons/log-out.svg" alt="" />
                     </Button>
                 </div>
