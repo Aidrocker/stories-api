@@ -1,17 +1,13 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { logout } from 'src/store/actions';
 import 'src/styles/Header.css';
 
 interface HeaderProps{
     login: string
+    sublogin: string
     onSubmit(e: any): void
 }
-
-type Props = HeaderProps & RouteComponentProps;
-const Header: React.FC<Props> = ({history, login, onSubmit}) => {
+const Header: React.FC<HeaderProps> = ({ login, sublogin, onSubmit}) => {
     return (
         <div className='header'>
             <div className='header__icont-and-title'>
@@ -23,9 +19,11 @@ const Header: React.FC<Props> = ({history, login, onSubmit}) => {
                 </div>
             </div>
             <div className='header__actions'>
-                <Button variant="outlined">
-                    {login} :  sublogin
-                </Button>
+                <div className="header__user">
+                    <span className='header__login'>{login}</span>
+                    :
+                    <span className='header__sublogin'>{sublogin}</span>
+                </div>
                 
                 <div className='header__log-out'>
                     <Button className='header__log-out-button' onClick={onSubmit}>
@@ -34,7 +32,7 @@ const Header: React.FC<Props> = ({history, login, onSubmit}) => {
                 </div>
                 <div className='header__scale'>
                     <Button className='header__button-scale'>
-                        <img src='/icons/vector.svg' />
+                        <img src='/icons/vector.svg' alt='' />
                     </Button>
                 </div>
             </div>
@@ -42,4 +40,4 @@ const Header: React.FC<Props> = ({history, login, onSubmit}) => {
     )
 }
 
-export default withRouter(Header);
+export default Header;

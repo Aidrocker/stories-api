@@ -3,15 +3,17 @@
     align-items: center;
     height: 3rem;
     background: #F6F6F6;
-    flex: none;
-    order: 2;
-    flex-grow: 0;
-    margin: 0px 0px;
-    padding: 0.1rem;
-    position: relative;
     width: 100%;
 }
 
-.vertical-align {
+.wrapper {
+    display: flex;
     align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    padding-top: 1rem;
+}
+
+.wrapper::-webkit-scrollbar{
+    width: 0;
 }

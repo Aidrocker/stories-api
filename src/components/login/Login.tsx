@@ -18,6 +18,8 @@ const LogoStyled = styled.img`
 `;
 
 const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassword, loading, isError }) => {
+    const regexp = /[^a-zA-Z0-9]+/g;
+    
     
     return (
         <div className='login'>
@@ -32,11 +34,22 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                 <Form
                     action='/'
                     onSubmit={onSubmit}
-                    render={({ handleSubmit, submitting, pristine }) => (
+                    validate={(values: any) => {
+                        const errors: any = {}
+                        if (!values.login) {
+                            errors.login = 'Required'
+                        }
+                        if (!values.password || regexp.test(values.password)) {
+                            errors.password = 'Required'
+                        }
+                        return errors
+                    }}
+
+                    render={({ handleSubmit, submitting, pristine, errors }) => (
                         <form onSubmit={handleSubmit} className='login__form'>
                             <Field name="login">
-                                {({ input }) => (
-                                    <div className={`container__login ${isError && 'container__error'}`}>
+                                {({ input, meta }) => (
+                                    <div className={`container__login ${meta.error && meta.touched && 'container__error'}`}>
                                         <label>Логин</label>
                                         <input
                                             className='login-input'
@@ -51,7 +64,7 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                                 )}
                             </Field>
                             <Field name="sublogin">
-                                {({ input }) => (
+                                {({ input, meta }) => (
                                     <div className='container__login'>
                                         <label>Сублогин</label>
                                         <input
@@ -67,8 +80,8 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                                 )}
                             </Field>
                             <Field name="password">
-                                {({ input }) => (
-                                    <div className={`container__login ${isError && 'container__error'}`}>
+                                {({ input, meta }) => (
+                                    <div className={`container__login ${meta.error && meta.touched && 'container__error'}`}>
                                         <label>Пароль</label>
                                         <input
                                             className='password__input'
@@ -82,14 +95,14 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                                     </div>
                                 )}
                             </Field>
+                            {console.log(errors)}
                             <div className="button">
-                               
                                 {loading ? 
                                     <button className='button__loading'>
                                         <LogoStyled src="/icons/loader.svg" alt="" />
                                     </button>
                                    : 
-                                   <button type="submit" disabled={submitting || pristine} onClick={onSubmit} className='button__log-in'>
+                                   <button type="submit" disabled={errors.login|| errors.password} onClick={onSubmit} className='button__log-in'>
                                         Войти
                                    </button>
                                 }

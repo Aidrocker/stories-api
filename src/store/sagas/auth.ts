@@ -1,4 +1,4 @@
-import { all, put, call, takeLatest, take } from '@redux-saga/core/effects';
+import { all, put, call, takeLatest} from '@redux-saga/core/effects';
 import api from 'src/helpers/sendsay';
 import { AnyAction } from 'redux';
 import { ActionTypes } from 'src/store/constants';
@@ -41,7 +41,7 @@ export function* authenticateSaga({ payload }: AnyAction) {
 }
 
 export function* logoutSaga() {
-  yield call(logoutSaga);
+  yield call(logout);
   document.cookie = '';
 }
 

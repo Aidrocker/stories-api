@@ -9,12 +9,13 @@ import { logout } from 'src/store/actions';
 const MainAppPage: React.FC<RouteComponentProps>  = ({history}) => {
     const dispatch = useDispatch()
     const login =  useSelector((state:RootStateOrAny) => state.auth.login);
+    const sublogin =  useSelector((state:RootStateOrAny) => state.auth.sublogin);
     const isLoggedIn = useSelector((state:RootStateOrAny) => state.auth.sessionKey?.length)
     useEffect(() => {
         if (!isLoggedIn) {
           history.push('/');
         }
-      }, [isLoggedIn]);
+      }, [isLoggedIn, history]);
     
       const doLogOut = () => {
         dispatch(
@@ -28,7 +29,7 @@ const MainAppPage: React.FC<RouteComponentProps>  = ({history}) => {
       }
     return (
         <div className='main-app'>
-            <Header login={login } onSubmit={onSubmit}/>
+            <Header login={login } onSubmit={onSubmit} sublogin={sublogin}/>
             <HistoryList/>
             {/* <div>
                 <div>

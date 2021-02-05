@@ -27,7 +27,7 @@
 .header__user {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     padding: 5px 15px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;

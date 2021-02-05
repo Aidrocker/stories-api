@@ -4,7 +4,6 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { authenticate } from 'src/store/actions/auth';
 import Login from 'src/components/login/Login';
-import { string } from 'prop-types';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -27,7 +26,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ history }) => {
     if (isLoggedIn) {
       history.push('/mainapp');
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, history]);
 
   const doLogin = () => {
     dispatch(
