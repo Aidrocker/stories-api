@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import Footer from 'src/components/footer/Footer';
 import Header from 'src/components/header/Header';
 import HistoryList from 'src/components/history/history-list/HistoryList';
+import JsonEditor from 'src/components/json-editor/JsonEditor';
 import { logout } from 'src/store/actions';
 
 
@@ -31,36 +33,8 @@ const MainAppPage: React.FC<RouteComponentProps>  = ({history}) => {
         <div className='main-app'>
             <Header login={login } onSubmit={onSubmit} sublogin={sublogin}/>
             <HistoryList/>
-            {/* <div>
-                <div>
-                    <div>Title</div>
-                    <div>Window </div>
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <div>Title</div>
-                    <div>Window </div>
-                </div>
-                <div>
-                    <div>Title</div>
-                    <div>Window </div>
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <div>Button send</div>
-                </div>
-                <div>
-                    <div>Link to github</div>
-                </div>
-                <div>
-                    <div>Align right</div>
-                    <div>форматировать</div>
-                </div>
-            </div> */}
+            <JsonEditor/>
+            <Footer/>
 
         </div>
     )

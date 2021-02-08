@@ -20,9 +20,9 @@ const Header: React.FC<HeaderProps> = ({ login, sublogin, onSubmit}) => {
             </div>
             <div className='header__actions'>
                 <div className="header__user">
-                    <span className='header__login'>{login}</span>
+                    {login &&<span className='header__login'>{login}</span>}
                     :
-                    <span className='header__sublogin'>{sublogin}</span>
+                    {sublogin && <span className='header__sublogin'>{sublogin}</span>}
                 </div>
                 
                 <div className='header__log-out'>

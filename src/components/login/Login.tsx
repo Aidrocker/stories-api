@@ -19,8 +19,7 @@ const LogoStyled = styled.img`
 
 const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassword, loading, isError }) => {
     const regexp = /[^a-zA-Z0-9]+/g;
-    
-    
+
     return (
         <div className='login'>
             <div className='login__icon'>
@@ -95,7 +94,6 @@ const Login: React.FC<LoginProps> = ({ onSubmit, setLogin, setSubLogin, setPassw
                                     </div>
                                 )}
                             </Field>
-                            {console.log(errors)}
                             <div className="button">
                                 {loading ? 
                                     <button className='button__loading'>

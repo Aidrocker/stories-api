@@ -5,7 +5,7 @@ import HistoryItem from '../history-item/HistoryItem';
 const HistoryList: React.FC = () => {
     return (
         <div className='history-list'>
-            <div className='wrapper'>
+            <div className='history-list__wrapper'>
                 <HistoryItem title='track.get' />
                 <HistoryItem title='track.get' />
                 <HistoryItem title='track.get' />
@@ -18,8 +18,10 @@ const HistoryList: React.FC = () => {
                 <HistoryItem title='track.get' />
                 <HistoryItem title='track.get' />
             </div>
-            <div>
-               X
+            <div className='history-list__delite'>
+                <button className='delite__button'>
+                    <img src='/icons/x.svg' alt='delete'/>
+                </button>
             </div>
         </div>
 

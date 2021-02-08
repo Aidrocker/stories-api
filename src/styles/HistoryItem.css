@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 5px 10px;
     width: 120px;
     height: 30px;
     left: 0px;
@@ -14,6 +13,14 @@
     order: 0;
     flex-grow: 0;
     margin: 0px 10px;
+}
+
+.history-item__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .history-item__title {
@@ -62,3 +69,7 @@
 .copy.MuiListItem-button:hover {
     background-color: #0055FB;
 }
+
+
+
+   

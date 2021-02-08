@@ -63,4 +63,6 @@
     background: none;
     margin-right: 1rem;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
