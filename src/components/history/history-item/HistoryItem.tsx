@@ -8,8 +8,6 @@ interface HistoryItemProps {
     title: string
 }
 
-
-
 const HistoryItem: React.FC<HistoryItemProps> = ({ title }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);

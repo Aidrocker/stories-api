@@ -48,12 +48,15 @@
 }
 
 .header__log-out-button {
+    display: flex;
+    align-items: center;
     border: none;
     background: none;
     cursor: pointer;
 }
 
 .header__scale {
+    margin-left: 1rem;
     display: flex;
     align-items: center;
 }
@@ -65,4 +68,18 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+}
+
+.header__button-scale:hover svg path{
+    stroke: #0055FB;
+    fill: #0055FB;
+}
+.header__button-scale:focus svg path{
+    stroke: #0055FB;
+    fill: #0055FB;
+}
+.header__button-scale:focus{
+    opacity: 0.5;
+    border: 2px solid #45A5FF;
+    border-radius: 7px;
 }

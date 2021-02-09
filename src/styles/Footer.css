@@ -49,6 +49,18 @@
     font-size: 16px;
 }
 
+.button__send:focus {
+    background: linear-gradient(180deg, #45A6FF 0%, #0055FB 100%), #C4C4C4;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 .footer__format {
     display: flex;
     align-items: center;
@@ -60,16 +72,27 @@
     border: none;
 }
 
-.format__button:hover {
+.format__button:hover p {
     display: flex;
     background: none;
     border: none;
     color: #0055FB;
 }
-.format__button > img {
-    margin-right: 1rem;
+
+.format__button:hover svg path {
+    fill: #0055FB;
+    stroke: #0055FB;
 }
 
-/* .jsoneditor-outer {
-    display: none;
-} */
+.format__button:focus {
+    opacity: 0.5;
+    border: 2px solid #45A5FF;
+    border-radius: 7px;
+    color:#0055FB;
+}
+
+.format__button:focus svg path{
+    fill: #0055FB;
+    stroke: #0055FB;
+}
+

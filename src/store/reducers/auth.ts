@@ -7,7 +7,8 @@ export const initialState = {
   sessionKey: null,
   login: null,
   sublogin: null,
-  isError: false
+  isError: false,
+  isBigSizeWindow: false
 };
 
 export default {
@@ -46,6 +47,12 @@ export default {
           sessionKey: null,
         };
       },
+      [ActionTypes.SET__SIZE]: (state) => {
+        return {
+          ...state,
+          isBigSizeWindow: !state.isBigSizeWindow
+        };
+      }
     },
     initialState
   ),

@@ -2,7 +2,7 @@ import { all, put, call, takeLatest} from '@redux-saga/core/effects';
 import api from 'src/helpers/sendsay';
 import { AnyAction } from 'redux';
 import { ActionTypes } from 'src/store/constants';
-import { authenticateSuccess, authenticateFailure, logout } from 'src/store/actions/auth';
+import { authenticateSuccess, authenticateFailure, logout, setSize } from 'src/store/actions/auth';
 
 
 export function* authenticateCheckSaga() {
@@ -45,10 +45,15 @@ export function* logoutSaga() {
   document.cookie = '';
 }
 
+export function* setSizeSaga() {
+  yield call(setSize)
+}
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.AUTHENTICATE, authenticateSaga),
     takeLatest(ActionTypes.AUTHENTICATE_CHECK, authenticateCheckSaga),
     takeLatest(ActionTypes.LOGOUT, logoutSaga),
+    takeLatest(ActionTypes.SET__SIZE, setSizeSaga)
   ]);
 }
