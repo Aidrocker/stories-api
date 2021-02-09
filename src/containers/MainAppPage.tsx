@@ -40,7 +40,6 @@ const MainAppPage: React.FC<RouteComponentProps> = ({ history }) => {
       <HistoryList />
       <JsonEditor />
       <Footer />
-
     </div>
   )
 }
