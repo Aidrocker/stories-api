@@ -2,16 +2,8 @@ import React from 'react';
 import { JsonEditor as Editor } from 'jsoneditor-react';
 import 'src/styles/JsonEditor.css'
 
-let value = {
-    this: 'this',
-    is: 'is',
-    'JSON!!!111!!': 'JSON!!!111!!',
-    1: 1,
-    2: 1,
-    3: 1,
-    4: 1,
-    5: 1,
-    6: 1,
+let defaultValue = {
+    
 };
 
 const JsonEditor: React.FC = () => {
@@ -24,7 +16,7 @@ const JsonEditor: React.FC = () => {
                 search={false}
                 navigationBar={false}
                 statusBar={false}
-                value={value}
+                value={defaultValue}
                 mode={Editor.modes.code}
                 htmlElementProps={{
                    style: {
@@ -46,8 +38,8 @@ const JsonEditor: React.FC = () => {
                 search={false}
                 navigationBar={false}
                 statusBar={false}
-                value={value}
-                mode={Editor.modes.view}
+                value={defaultValue}
+                mode={Editor.modes.text}
                 htmlElementProps={{
                     style: {
                         width: '100%'
