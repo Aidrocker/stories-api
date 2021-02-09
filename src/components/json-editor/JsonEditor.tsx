@@ -4,7 +4,6 @@ import 'src/styles/JsonEditor.css';
 
 type JsonEditorProps = {
     isDown: boolean
-    editorTwoWidth: string
     editorOneWidth: number
 }
 
@@ -15,17 +14,16 @@ class JsonEditor extends Component<{}, JsonEditorProps> {
         super(props);
         this.state = {
             isDown: false,
-            editorTwoWidth: '100%',
-            editorOneWidth: 700
+            editorOneWidth: 100,
         }
     }
 
     mouseDown = (e: { clientX: any; }) => {
         this.setState({isDown: true});
         let prevX = e.clientX;
-
-        const mousemove =  (e) =>{
-            this.setState({editorOneWidth: this.state.editorOneWidth - (prevX - e.clientX)})
+        
+        const mousemove = (e) =>{
+            this.setState({editorOneWidth: (this.state.editorOneWidth - (prevX - e.clientX)) })
             prevX = e.clientX
         }
 
@@ -39,11 +37,13 @@ class JsonEditor extends Component<{}, JsonEditorProps> {
         window.addEventListener("mouseup", mouseup);
     }
 
-   
+    setmouseEvent = (isIt: any) => this.setState({ isDown: isIt });
 
-    renderEditors = () => {
+    render() {
+       
         return (
             <div className='riot'>
+                
                 <Editor
                     name={'lol'}
                     search={false}
@@ -53,7 +53,7 @@ class JsonEditor extends Component<{}, JsonEditorProps> {
                     mode={Editor.modes.code}
                     htmlElementProps={{
                         style: {
-                            width: `${this.state.editorOneWidth}px`
+                            width: `${this.state.editorOneWidth}rem`
                         }
                     }}
                 />
@@ -80,24 +80,11 @@ class JsonEditor extends Component<{}, JsonEditorProps> {
                     mode={Editor.modes.text}
                     htmlElementProps={{
                         style: {
-                            width: this.state.editorTwoWidth
+                            width: '100%'
                         }
                     }}
                 />
             </div>
-        )
-    }
-    setmouseEvent = (isIt: any) => this.setState({ isDown: isIt });
-
-    render() {
-        window.addEventListener('mouseup', () => {
-            console.log('element')
-            return this.setState({editorOneWidth: 300})
-        })
-        return (
-            <>
-                {this.renderEditors()}
-            </>
         );
 
     }

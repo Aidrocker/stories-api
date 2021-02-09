@@ -14,7 +14,6 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ title }) => {
 
     const handleClick = (event) => {
         event.stopPropagation();
-        console.log(event.target)
         setAnchorEl(event.currentTarget);
     };
 
