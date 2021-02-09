@@ -3,9 +3,15 @@ import 'src/styles/HistoryList.css';
 import HistoryItem from '../history-item/HistoryItem';
 
 const HistoryList: React.FC = () => {
+    const handleTarget = (e) =>{
+        // e.stopPropagation();
+        // e.preventDefault();
+        // console.log(e.target)
+    }
     return (
         <div className='history-list'>
-            <div className='history-list__wrapper'>
+            <div className='history-list__wrapper' onClick={handleTarget}>
+                <div className='history-list__wrapper--after' onClick={e => e.preventDefault()}/>
                 <HistoryItem title='track.get' />
                 <HistoryItem title='track.get' />
                 <HistoryItem title='track.get' />
@@ -27,8 +33,6 @@ const HistoryList: React.FC = () => {
                 </button>
             </div>
         </div>
-
-
     )
 }
 

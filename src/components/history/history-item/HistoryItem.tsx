@@ -14,7 +14,7 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ title }) => {
 
     const handleClick = (event) => {
         event.stopPropagation();
-        console.log(event)
+        console.log(event.target)
         setAnchorEl(event.currentTarget);
     };
 
@@ -57,7 +57,6 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ title }) => {
                     Удалить
                 </MenuItem>
             </Menu>
-
         </Box>
     )
 }

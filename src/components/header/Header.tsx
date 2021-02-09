@@ -1,4 +1,3 @@
-import { Button } from '@material-ui/core';
 import React from 'react';
 import 'src/styles/Header.css';
 
@@ -10,8 +9,6 @@ interface HeaderProps {
     isBigSize: boolean
 }
 const Header: React.FC<HeaderProps> = ({ login, sublogin, onSubmit, setSize, isBigSize }) => {
-    console.log(isBigSize);
-
     return (
         <div className='header'>
             <div className='header__icont-and-title'>
