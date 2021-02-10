@@ -1,6 +1,6 @@
 .footer {
     margin-top: 50px;
-    height: 70px;
+    
     width: 100%;
     display: flex;
     align-items: center;
@@ -10,7 +10,7 @@
     order: 3;
     flex-grow: 0;
     margin: 0px 0px;
-    padding: 0 1rem;
+    padding: 1rem;
 }
 .button__send {
     background: linear-gradient(180deg, #45A6FF 0%, #0055FB 100%), #C4C4C4;

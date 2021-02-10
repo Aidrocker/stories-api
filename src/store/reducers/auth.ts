@@ -8,7 +8,8 @@ export const initialState = {
   login: null,
   sublogin: null,
   isError: false,
-  isBigSizeWindow: false
+  isBigSizeWindow: false,
+  historyOfResponse: new Set()
 };
 
 export default {
@@ -47,12 +48,6 @@ export default {
           sessionKey: null,
         };
       },
-      [ActionTypes.SET__SIZE]: (state) => {
-        return {
-          ...state,
-          isBigSizeWindow: !state.isBigSizeWindow
-        };
-      }
     },
     initialState
   ),

@@ -6,7 +6,8 @@ import { persistReducer, FLUSH,
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER } from 'redux-persist';
+  REGISTER, 
+  persistStore} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import rootReducer from 'src/store/reducers/index';
 import rootSaga from 'src/store/sagas/index';

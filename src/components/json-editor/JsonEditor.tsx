@@ -1,93 +1,103 @@
-import React, { Component } from 'react';
+import React, {  useState } from 'react';
 import { JsonEditor as Editor } from 'jsoneditor-react';
 import 'src/styles/JsonEditor.css';
+import ace from 'brace';
+import Ajv from 'ajv';
 
-type JsonEditorProps = {
-    isDown: boolean
-    editorOneWidth: number
+interface JsonEditorProps {
+    setJsonVal(obj:object): void
+    jsonVal: object
+
 }
 
-const defaultValue = {};
+const JsonEditor:React.FC<JsonEditorProps> = ({setJsonVal, jsonVal}) => {
+    const [isDown, setPositionMouseEvent] = useState(false);
+    const [editorOneWidth, setEditorOneWidth] = useState(100)
 
-class JsonEditor extends Component<{}, JsonEditorProps> {
-    constructor(props: {} | Readonly<{}>) {
-        super(props);
-        this.state = {
-            isDown: false,
-            editorOneWidth: 100,
-        }
-    }
-
-    mouseDown = (e: { clientX: any; }) => {
-        this.setState({isDown: true});
+    const mouseDown = (e: { clientX: any; }) => {
+        setPositionMouseEvent(true)
         let prevX = e.clientX;
-        
-        const mousemove = (e) =>{
-            this.setState({editorOneWidth: (this.state.editorOneWidth - (prevX - e.clientX)) })
-            prevX = e.clientX
-        }
-
-        const mouseup = () => {
-            window.removeEventListener("mousemove", mousemove);
-            window.removeEventListener("mouseup", mouseup);
-            this.setState({isDown: false})
-        }
 
         window.addEventListener("mousemove", mousemove);
         window.addEventListener("mouseup", mouseup);
+        
+        function mousemove (e){
+            setEditorOneWidth(prev => prev - (prevX - e.clientX))
+            prevX = e.clientX
+        }
+
+        function mouseup(){
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mouseup);
+            setPositionMouseEvent(false)
+        }
     }
 
-    setmouseEvent = (isIt: any) => this.setState({ isDown: isIt });
+    function handleChange(json) {
+        setJsonVal(json)
+    }
+    const schema = {
+        type: 'object',
+        properties: {
+            some: {
+                type: 'integer'
+            }
+        },
+        required: ['some']
+    };
 
-    render() {
-       
-        return (
-            <div className='riot'>
-                
-                <Editor
-                    name={'lol'}
-                    search={false}
-                    navigationBar={false}
-                    statusBar={false}
-                    value={defaultValue}
-                    mode={Editor.modes.code}
-                    htmlElementProps={{
-                        style: {
-                            width: `${this.state.editorOneWidth}rem`
-                        }
-                    }}
-                />
-                <div className='drower' onMouseDown={this.mouseDown}>
-                    <svg
-                        focusable='false'
-                        viewBox='0 0 24 24'
-                        aria-hidden='true'
-                        className='drower__svg'
-                    >
-                        <path d="M12 8 c 1.1 0 2 -0.9 2 -2 s -0.9 -2 -2 -2 s -2 0.9 -2 2 s
-                     0.9 2 2 2 Z m 0 2 c -1.1 0 -2 0.9 -2 2 s 0.9 2 2 2 s 2 -0.9 2 -2 s 
-                     -0.9 -2 -2 -2 Z m 
-                     0 6 c -1.1 0 -2 0.9 -2 2 s 0.9 2 2 
-                     2 s 2 -0.9 2 -2 s -0.9
-                    -2 -2 -2 Z" />
-                    </svg>
-                </div>
-                <Editor
-                    search={false}
-                    navigationBar={false}
-                    statusBar={false}
-                    value={defaultValue}
-                    mode={Editor.modes.text}
-                    htmlElementProps={{
-                        style: {
-                            width: '100%'
-                        }
-                    }}
-                />
+    return (
+        
+        <div className='riot'>
+            
+            <Editor
+                name={'lol'}
+                schema={schema}
+                search={false}
+                navigationBar={false}
+                statusBar={false}
+                value={jsonVal}
+                mode={Editor.modes.code}
+                htmlElementProps={{
+                    style: {
+                        width: `${editorOneWidth}rem`
+                    }
+                }}
+                ace={ace}
+                onChange={handleChange}
+                ajv={Ajv({ allErrors: true, verbose: true })}
+            />
+            <div className='drower' onMouseDown={mouseDown}>
+                <svg
+                    focusable='false'
+                    viewBox='0 0 24 24'
+                    aria-hidden='true'
+                    className='drower__svg'
+                >
+                    <path d="M12 8 c 1.1 0 2 -0.9 2 -2 s -0.9 -2 -2 -2 s -2 0.9 -2 2 s
+                 0.9 2 2 2 Z m 0 2 c -1.1 0 -2 0.9 -2 2 s 0.9 2 2 2 s 2 -0.9 2 -2 s 
+                 -0.9 -2 -2 -2 Z m 
+                 0 6 c -1.1 0 -2 0.9 -2 2 s 0.9 2 2 
+                 2 s 2 -0.9 2 -2 s -0.9
+                -2 -2 -2 Z" />
+                </svg>
             </div>
-        );
+            <Editor
+                search={false}
+                navigationBar={false}
+                statusBar={false}
+                value={jsonVal}
+                mode={Editor.modes.view}
+                htmlElementProps={{
+                    style: {
+                        width: '100%'
+                    }
+                }}
+            />
+        </div>
+    );
 
-    }
+
 }
 
 export default JsonEditor;

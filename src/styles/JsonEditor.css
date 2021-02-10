@@ -1,7 +1,8 @@
 .riot {
     display: flex;
     justify-content: space-between;
-    min-height: 610px;
+    height: 80%;
+	min-height: 36rem;
     padding: 1rem;
     background: #FFFFFF;
     border-bottom: 0.5px solid lightgray;
@@ -12,9 +13,11 @@
 }
 
  .jsoneditor-menu {
+    display: none; 
+}
+.ace_gutter{
     display: none;
 }
-
 .jsoneditor {
     padding: 1rem;
     border: 1px solid rgba(0, 0, 0, 0.2);
